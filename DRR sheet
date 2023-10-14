@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add styles for the table, rows, and cells */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #000; /* Table border */
+        }
+
+        th, td {
+            border: 1px solid #000; /* Cell borders */
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternating row background color */
+        }
+
+        /* Style for the Save button */
+        .save-button {
+            margin: 20px auto;
+            display: block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Month</th>
+                <th>Exclude Dates (yyyy-mm-dd, yyyy-mm-dd)</th>
+                <th>Number of Days</th>
+                <th>Lead Count</th>
+                <th>Expected DRR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="date" name="startDate1" id="startDate1" onchange="updateMonthAndDays(1)"></td>
+                <td><input type="date" name="endDate1" id="endDate1" onchange="updateMonthAndDays(1)"></td>
+                <td id="month1">Month 1</td>
+                <td><input type="text" name="excludeDates1" id="excludeDates1" onchange="validateDateFormat(1); updateMonthAndDays(1)"></td>
+                <td id="numDays1">0</td>
+                <td><input type="number" name="leadCount1" id="leadCount1" oninput="updateExpectedLeadCount(1)"></td>
+                <td id="expectedLeadCount1">0</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startDate2" id="startDate2" onchange="updateMonthAndDays(2)"></td>
+                <td><input type="date" name="endDate2" id="endDate2" onchange="updateMonthAndDays(2)"></td>
+                <td id="month2">Month 2</td>
+                <td><input type="text" name="excludeDates2" id="excludeDates2" onchange="validateDateFormat(2); updateMonthAndDays(2)"></td>
+                <td id="numDays2">0</td>
+                <td><input type="number" name="leadCount2" id="leadCount2" oninput="updateExpectedLeadCount(2)"></td>
+                <td id="expectedLeadCount2">0</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startDate3" id="startDate3" onchange="updateMonthAndDays(3)"></td>
+                <td><input type="date" name="endDate3" id="endDate3" onchange="updateMonthAndDays(3)"></td>
+                <td id="month3">Month 3</td>
+                <td><input type="text" name="excludeDates3" id="excludeDates3" onchange="validateDateFormat(3); updateMonthAndDays(3)"></td>
+                <td id="numDays3">0</td>
+                <td><input type="number" name="leadCount3" id="leadCount3" oninput="updateExpectedLeadCount(3)"></td>
+                <td id="expectedLeadCount3">0</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startDate4" id="startDate4" onchange="updateMonthAndDays(4)"></td>
+                <td><input type="date" name="endDate4" id="endDate4" onchange="updateMonthAndDays(4)"></td>
+                <td id="month4">Month 4</td>
+                <td><input type="text" name="excludeDates4" id="excludeDates4" onchange="validateDateFormat(4); updateMonthAndDays(4)"></td>
+                <td id="numDays4">0</td>
+                <td><input type="number" name="leadCount4" id="leadCount4" oninput="updateExpectedLeadCount(4)"></td>
+                <td id="expectedLeadCount4">0</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startDate5" id="startDate5" onchange="updateMonthAndDays(5)"></td>
+                <td><input type="date" name="endDate5" id="endDate5" onchange="updateMonthAndDays(5)"></td>
+                <td id="month5">Month 5</td>
+                <td><input type="text" name="excludeDates5" id="excludeDates5" onchange="validateDateFormat(5); updateMonthAndDays(5)"></td>
+                <td id="numDays5">0</td>
+                <td><input type="number" name="leadCount5" id="leadCount5" oninput="updateExpectedLeadCount(5)"></td>
+                <td id="expectedLeadCount5">0</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startDate6" id="startDate6" onchange="updateMonthAndDays(6)"></td>
+                <td><input type="date" name="endDate6" id="endDate6" onchange="updateMonthAndDays(6)"></td>
+                <td id="month6">Month 6</td>
+                <td><input type="text" name="excludeDates6" id="excludeDates6" onchange="validateDateFormat(6); updateMonthAndDays(6)"></td>
+                <td id="numDays6">0</td>
+                <td><input type="number" name="leadCount6" id="leadCount6" oninput="updateExpectedLeadCount(6)"></td>
+                <td id="expectedLeadCount6">0</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startDate7" id="startDate7" onchange="updateMonthAndDays(7)"></td>
+                <td><input type="date" name="endDate7" id="endDate7" onchange="updateMonthAndDays(7)"></td>
+                <td id="month7">Month 7</td>
+                <td><input type="text" name="excludeDates7" id="excludeDates7" onchange="validateDateFormat(7); updateMonthAndDays(7)"></td>
+                <td id="numDays7">0</td>
+                <td><input type="number" name="leadCount7" id="leadCount7" oninput="updateExpectedLeadCount(7)"></td>
+                <td id="expectedLeadCount7">0</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+    <!-- Save button -->
+    <button class="save-button">Save</button>
+
+    <script>
+        // Function to update the Month and Number of Days columns based on Start Date, End Date, and Exclude Dates
+        function updateMonthAndDays(rowNumber) {
+            // ...
+        }
+
+        // Function to validate the date format
+        function validateDateFormat(rowNumber) {
+            // ...
+        }
+
+        // Function to calculate the number of days between two dates, excluding the excluded dates
+        function calculateDays(startDate, endDate, excludedDates) {
+            // ...
+        }
+
+        // Function to update Expected DRR (Derived from Lead Count and Number of Days)
+        function updateExpectedLeadCount(rowNumber) {
+            // ...
+        }
+    </script>
+</body>
+</html>
